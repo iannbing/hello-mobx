@@ -5,7 +5,8 @@ const Page = styled('div')({
   height: '100vh',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  paddingTop: 250,
   background: '#f7f7f7'
 });
 
