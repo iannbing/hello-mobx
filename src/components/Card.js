@@ -1,9 +1,10 @@
 import styled from 'react-emotion';
-import { Card as AntCard } from 'antd';
+import { Card } from 'antd';
+import 'antd/lib/card/style/css';
 
-const Card = styled(AntCard)({
+const MyCard = styled(Card)({
   boxShadow: '-1px 2px 24px -4px rgba(117,117,117,0.72)',
   minWidth: 600
 });
 
-export default Card;
+export default MyCard;

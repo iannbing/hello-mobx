@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { List, Switch, Divider } from 'antd';
+import { List, Switch, Icon } from 'antd';
+import { observable, computed } from 'mobx';
+import { observer } from 'mobx-react';
+import { get } from 'lodash';
+
+import 'antd/lib/list/style/css';
+import 'antd/lib/switch/style/css';
+import 'antd/lib/icon/style/css';
 
 import Page from './components/Page';
 import Card from './components/Card';
@@ -20,9 +27,10 @@ class App extends Component {
       };
     });
   };
-  onType = e => this.setState({ inputValue: e.nativeEvent.target.value });
+  onType = e =>
+    this.setState({ inputValue: get(e, 'nativeEvent.target.value') });
   addItem = e => {
-    const name = e.nativeEvent.target.value;
+    const name = e.nativeEvent.target.value.trim();
     if (name) {
       this.setState(state => {
         const { list } = state;
@@ -69,7 +77,9 @@ class App extends Component {
             }}
             renderItem={item => (
               <List.Item
-                actions={[<a onClick={this.removeItem(item.name)}>delete</a>]}
+                actions={[
+                  <span onClick={this.removeItem(item.name)}>delete</span>
+                ]}
               >
                 <List.Item.Meta
                   avatar={

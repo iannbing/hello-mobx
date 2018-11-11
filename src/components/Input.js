@@ -1,10 +1,11 @@
 import styled from 'react-emotion';
-import { Input as AntInput } from 'antd';
+import { Input } from 'antd';
+import 'antd/lib/input/style/css';
 
-const Input = styled(AntInput)({
+const MyInput = styled(Input)({
   border: 'none',
   boxShadow: 'none !important',
   fontSize: '2rem'
 });
 
-export default Input;
+export default MyInput;
