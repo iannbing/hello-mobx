@@ -10,11 +10,11 @@ const {
 module.exports = override(
   addDecoratorsLegacy(),
   disableEsLint(),
-  process.env.REACT_APP_BUNDLE_VISUALIZE === 'true' && addBundleVisualizer(),
+  process.env.BUNDLE_VISUALIZE === 'true' && addBundleVisualizer(),
   addWebpackAlias({ '@ant-design/icons': 'purched-antd-icons' }), // only include used Icons
   fixBabelImports('antd', {
     libraryDirectory: 'lib',
-    style: false
+    style: 'css'
   }),
   fixBabelImports('lodash', {
     libraryDirectory: '',

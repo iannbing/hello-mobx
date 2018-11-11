@@ -4,10 +4,6 @@ import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { get } from 'lodash';
 
-import 'antd/lib/list/style/css';
-import 'antd/lib/switch/style/css';
-import 'antd/lib/icon/style/css';
-
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';

@@ -1,6 +1,5 @@
 import styled from 'react-emotion';
 import { Input } from 'antd';
-import 'antd/lib/input/style/css';
 
 const MyInput = styled(Input)({
   border: 'none',
