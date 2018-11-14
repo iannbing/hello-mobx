@@ -1,4 +1,4 @@
-import { types, onSnapshot } from 'mobx-state-tree';
+import { types } from 'mobx-state-tree';
 
 const Todo = types
   .model('Todo', {
@@ -25,18 +25,4 @@ const TodoStore = types
     }
   }));
 
-// create an instance from a snapshot
-const todoStore = TodoStore.create({
-  todos: [
-    {
-      title: 'Get coffee'
-    }
-  ]
-});
-
-// listen to new snapshots
-onSnapshot(todoStore, snapshot => {
-  console.dir(snapshot);
-});
-
-export default todoStore;
+export default TodoStore;

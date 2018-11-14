@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import { List, Switch, Icon } from 'antd';
-import { observable, computed } from 'mobx';
-import { observer } from 'mobx-react';
+import { List, Switch } from 'antd';
+import { observer, inject } from 'mobx-react';
 import { get } from 'lodash';
 
-import todoStore from './todoStore';
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';
-
+@inject('todoStore')
 @observer
 class App extends Component {
   state = {
     inputValue: ''
   };
   onChangeItemState = title => checked => {
+    const { todoStore } = this.props;
+
     todoStore.todos.find(item => item.title === title).toggle();
   };
   onType = e =>
     this.setState({ inputValue: get(e, 'nativeEvent.target.value') });
   addItem = async e => {
+    const { todoStore } = this.props;
+
     const title = e.nativeEvent.target.value.trim();
     if (title) {
       await todoStore.add(title);
@@ -27,13 +29,16 @@ class App extends Component {
     }
   };
   removeItem = title => e => {
+    const { todoStore } = this.props;
+
     todoStore.remove(title);
   };
 
   getVisibleTodos = () => {
     const { inputValue } = this.state;
-    const { todos } = todoStore;
-    return todos.filter(item => item.title.includes(inputValue));
+    const { todoStore } = this.props;
+
+    return todoStore.todos.filter(item => item.title.includes(inputValue));
   };
   render() {
     const { inputValue } = this.state;
