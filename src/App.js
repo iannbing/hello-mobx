@@ -4,49 +4,40 @@ import { observable, computed } from 'mobx';
 import { observer } from 'mobx-react';
 import { get } from 'lodash';
 
+import todoStore from './todoStore';
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';
 
+@observer
 class App extends Component {
   state = {
-    list: [{ name: 'foo', done: true }, { name: 'bar', done: false }],
     inputValue: ''
   };
-  onChangeItemState = name => checked => {
-    this.setState(state => {
-      const { list } = state;
-      return {
-        list: list.map(item =>
-          item.name === name ? { ...item, done: !item.done } : item
-        )
-      };
-    });
+  onChangeItemState = title => checked => {
+    todoStore.todos.find(item => item.title === title).toggle();
   };
   onType = e =>
     this.setState({ inputValue: get(e, 'nativeEvent.target.value') });
-  addItem = e => {
-    const name = e.nativeEvent.target.value.trim();
-    if (name) {
-      this.setState(state => {
-        const { list } = state;
-        return {
-          list: [...list, { name, done: false }],
-          inputValue: ''
-        };
-      });
+  addItem = async e => {
+    const title = e.nativeEvent.target.value.trim();
+    if (title) {
+      await todoStore.add(title);
+      this.setState({ inputValue: '' });
     }
   };
-  removeItem = name => e => {
-    this.setState(state => {
-      const { list } = state;
-      return {
-        list: list.filter(item => item.name !== name)
-      };
-    });
+  removeItem = title => e => {
+    todoStore.remove(title);
+  };
+
+  getVisibleTodos = () => {
+    const { inputValue } = this.state;
+    const { todos } = todoStore;
+    return todos.filter(item => item.title.includes(inputValue));
   };
   render() {
-    const { list, inputValue } = this.state;
+    const { inputValue } = this.state;
+    const todos = this.getVisibleTodos();
     return (
       <Page>
         <Card
@@ -62,7 +53,7 @@ class App extends Component {
         >
           <List
             itemLayout="horizontal"
-            dataSource={list.filter(item => item.name.includes(inputValue))}
+            dataSource={todos}
             locale={{
               emptyText: (
                 <span>
@@ -74,17 +65,17 @@ class App extends Component {
             renderItem={item => (
               <List.Item
                 actions={[
-                  <span onClick={this.removeItem(item.name)}>delete</span>
+                  <span onClick={this.removeItem(item.title)}>delete</span>
                 ]}
               >
                 <List.Item.Meta
                   avatar={
                     <Switch
                       defaultChecked={!item.done}
-                      onChange={this.onChangeItemState(item.name)}
+                      onChange={this.onChangeItemState(item.title)}
                     />
                   }
-                  title={item.name}
+                  title={item.title}
                 />
               </List.Item>
             )}
