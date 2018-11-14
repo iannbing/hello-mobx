@@ -38,7 +38,7 @@ class App extends Component {
     const { inputValue } = this.state;
     const { todoStore } = this.props;
 
-    return todoStore.todos.filter(item => item.title.includes(inputValue));
+    return todoStore.getSearchResults(inputValue);
   };
   render() {
     const { inputValue } = this.state;

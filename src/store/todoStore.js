@@ -21,8 +21,19 @@ const TodoStore = types
     },
     remove: title => {
       self.todos = self.todos.filter(item => item.title !== title);
-      console.log(self.todos);
     }
+  }))
+  .views(self => ({
+    getSearchResults: searchTerm =>
+      self.todos.filter(item => item.title.includes(searchTerm))
   }));
 
-export default TodoStore;
+const todoStore = TodoStore.create({
+  todos: [
+    {
+      title: 'Get coffee'
+    }
+  ]
+});
+
+export default todoStore;

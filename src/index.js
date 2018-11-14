@@ -3,16 +3,8 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import TodoStore from './TodoStore';
+import todoStore from './store/todoStore';
 import { Provider } from 'mobx-react';
-
-const todoStore = TodoStore.create({
-  todos: [
-    {
-      title: 'Get coffee'
-    }
-  ]
-});
 
 ReactDOM.render(
   <Provider todoStore={todoStore}>
