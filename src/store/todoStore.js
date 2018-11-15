@@ -21,6 +21,12 @@ const TodoStore = types
     },
     remove: title => {
       self.todos = self.todos.filter(item => item.title !== title);
+    },
+    load: ({ todos }) => {
+      self.todos = todos ? [...self.todos, ...todos] : self.todos;
+    },
+    toggle: title => {
+      self.todos.find(item => item.title === title).toggle();
     }
   }))
   .views(self => ({
@@ -29,11 +35,7 @@ const TodoStore = types
   }));
 
 const todoStore = TodoStore.create({
-  todos: [
-    {
-      title: 'Get coffee'
-    }
-  ]
+  todos: []
 });
 
 export default todoStore;

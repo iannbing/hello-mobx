@@ -6,16 +6,36 @@ import { get } from 'lodash';
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';
+import Fetcher from './Fetcher';
+
 @inject('todoStore')
 @observer
 class App extends Component {
+  static defaultProps = {
+    key: 'todos'
+  };
   state = {
     inputValue: ''
+  };
+  load = key => {
+    const { todoStore } = this.props;
+    const retrievedObject = localStorage.getItem(key);
+    const data = retrievedObject ? JSON.parse(retrievedObject) : {};
+    todoStore.load(data);
+    return data;
+  };
+
+  save = async dataToSave => {
+    const { key } = this.props;
+
+    await localStorage.setItem(key, JSON.stringify(dataToSave));
+    return Promise.resolve();
   };
   onChangeItemState = title => checked => {
     const { todoStore } = this.props;
 
-    todoStore.todos.find(item => item.title === title).toggle();
+    todoStore.toggle(title);
+    this.save({ todos: todoStore.todos });
   };
   onType = e =>
     this.setState({ inputValue: get(e, 'nativeEvent.target.value') });
@@ -25,13 +45,15 @@ class App extends Component {
     const title = e.nativeEvent.target.value.trim();
     if (title) {
       await todoStore.add(title);
+      this.save({ todos: todoStore.todos });
       this.setState({ inputValue: '' });
     }
   };
-  removeItem = title => e => {
+  removeItem = title => async e => {
     const { todoStore } = this.props;
 
-    todoStore.remove(title);
+    await todoStore.remove(title);
+    this.save({ todos: todoStore.todos });
   };
 
   getVisibleTodos = () => {
@@ -45,6 +67,7 @@ class App extends Component {
     const todos = this.getVisibleTodos();
     return (
       <Page>
+        <Fetcher fetch={this.load} id="todos" />
         <Card
           title={
             <Input
