@@ -8,66 +8,58 @@ import Card from './components/Card';
 import Input from './components/Input';
 import Fetcher from './Fetcher';
 
-@inject('todoStore')
+const key = 'todoList';
+
+@inject(key)
 @observer
 class App extends Component {
-  static defaultProps = {
-    key: 'todos'
-  };
+  static defaultProps = { key };
   state = {
     inputValue: ''
   };
   load = key => {
-    const { todoStore } = this.props;
+    const { todoList } = this.props;
     const retrievedObject = localStorage.getItem(key);
     const data = retrievedObject ? JSON.parse(retrievedObject) : {};
-    todoStore.load(data);
+    todoList.load(data);
     return data;
   };
 
-  save = async dataToSave => {
-    const { key } = this.props;
-
-    await localStorage.setItem(key, JSON.stringify(dataToSave));
-    return Promise.resolve();
-  };
   onChangeItemState = title => checked => {
-    const { todoStore } = this.props;
+    const { todoList } = this.props;
 
-    todoStore.toggle(title);
-    this.save({ todos: todoStore.todos });
+    todoList.toggle(title);
   };
   onType = e =>
     this.setState({ inputValue: get(e, 'nativeEvent.target.value') });
   addItem = async e => {
-    const { todoStore } = this.props;
+    const { todoList } = this.props;
 
     const title = e.nativeEvent.target.value.trim();
     if (title) {
-      await todoStore.add(title);
-      this.save({ todos: todoStore.todos });
+      await todoList.add(title);
       this.setState({ inputValue: '' });
     }
   };
   removeItem = title => async e => {
-    const { todoStore } = this.props;
+    const { todoList } = this.props;
 
-    await todoStore.remove(title);
-    this.save({ todos: todoStore.todos });
+    await todoList.remove(title);
   };
 
-  getVisibleTodos = () => {
+  getVisibleTodoItems = () => {
     const { inputValue } = this.state;
-    const { todoStore } = this.props;
+    const { todoList } = this.props;
 
-    return todoStore.getSearchResults(inputValue);
+    return todoList.getSearchResults(inputValue);
   };
   render() {
     const { inputValue } = this.state;
-    const todos = this.getVisibleTodos();
+    const { key } = this.props;
+    const todoItems = this.getVisibleTodoItems();
     return (
       <Page>
-        <Fetcher fetch={this.load} id="todos" />
+        <Fetcher fetch={this.load} id={key} />
         <Card
           title={
             <Input
@@ -81,7 +73,7 @@ class App extends Component {
         >
           <List
             itemLayout="horizontal"
-            dataSource={todos}
+            dataSource={todoItems}
             locale={{
               emptyText: inputValue ? (
                 <>

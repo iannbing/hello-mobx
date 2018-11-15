@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import todoStore from './store/todoStore';
+import TodoListStore from './store/TodoListStore';
 import { Provider } from 'mobx-react';
+import { reaction } from 'mobx';
+
+const todoList = TodoListStore.create({
+  items: []
+});
+
+reaction(
+  () => [...todoList.items],
+  items => localStorage.setItem('todoList', JSON.stringify(items))
+);
 
 ReactDOM.render(
-  <Provider todoStore={todoStore}>
+  <Provider todoList={todoList}>
     <App />
   </Provider>,
   document.getElementById('root')
