@@ -60,10 +60,14 @@ class App extends Component {
             itemLayout="horizontal"
             dataSource={todos}
             locale={{
-              emptyText: (
-                <span>
-                  Press Enter to Add{' '}
+              emptyText: inputValue ? (
+                <>
+                  <span>Press Enter to Add </span>
                   <span style={{ fontWeight: 'bold' }}>{inputValue}</span>
+                </>
+              ) : (
+                <span role="img" aria-label="img">
+                  Go out and enjoy the sun 😎🍸️
                 </span>
               )
             }}
