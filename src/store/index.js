@@ -1,4 +1,5 @@
 import { reaction } from 'mobx';
+import isEqual from 'lodash.isequal';
 
 import TodoListStore from './TodoListStore';
 
@@ -7,9 +8,8 @@ const todoList = TodoListStore.create({
 });
 
 reaction(
-  () => [...todoList.items],
+  () => todoList.items.map(item => ({ ...item })),
   items => {
-    console.log('save');
     localStorage.setItem('todoList', JSON.stringify(items));
   }
 );
