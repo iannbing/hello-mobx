@@ -6,21 +6,24 @@ import { get } from 'lodash';
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';
-import Fetcher from './Fetcher';
+import { fetch } from './Fetcher';
 
-const key = 'todoList';
+const TODO_LIST = 'todoList';
 
-@inject(key)
+@inject(TODO_LIST)
 @observer
 class App extends Component {
-  static defaultProps = { key };
   state = {
     inputValue: ''
   };
-  load = key => {
+
+  componentDidMount() {
+    this.loadTodoList();
+  }
+
+  loadTodoList = async () => {
     const { todoList } = this.props;
-    const retrievedObject = localStorage.getItem(key);
-    const data = retrievedObject ? JSON.parse(retrievedObject) : {};
+    const data = await fetch(TODO_LIST);
     todoList.load(data);
     return data;
   };
@@ -55,11 +58,9 @@ class App extends Component {
   };
   render() {
     const { inputValue } = this.state;
-    const { key } = this.props;
     const todoItems = this.getVisibleTodoItems();
     return (
       <Page>
-        <Fetcher fetch={this.load} id={key} />
         <Card
           title={
             <Input

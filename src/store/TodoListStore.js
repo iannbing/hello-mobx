@@ -12,7 +12,7 @@ const TodoItem = types
   }));
 
 const TodoListStore = types
-  .model('TodoStore', {
+  .model('TodoListStore', {
     items: types.array(TodoItem)
   })
   .actions(self => ({

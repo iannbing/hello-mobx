@@ -1,5 +1,10 @@
 import { Component } from 'react';
 
+export const fetch = async key => {
+  const retrievedObject = localStorage.getItem(key);
+  return retrievedObject ? JSON.parse(retrievedObject) : {};
+};
+
 class Fetcher extends Component {
   state = { data: null, loading: false };
   componentDidMount() {
@@ -11,7 +16,8 @@ class Fetcher extends Component {
   doFetch = async () => {
     const { id } = this.props;
     this.setState({ loading: true });
-    const data = await this.props.fetch(id);
+    const fetchFn = this.props.fetch || fetch;
+    const data = await fetchFn(id);
     this.setState({ data, loading: false });
   };
   render() {
