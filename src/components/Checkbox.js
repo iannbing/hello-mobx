@@ -14,7 +14,7 @@ const Circle = styled('div')({
 const CustomIcon = styled(Icon)({
   width: iconSize,
   height: iconSize,
-  color: '#00E676',
+  color: '#64dd17',
   '> svg': {
     fontSize: iconSize // overwrite the list item style
   }
