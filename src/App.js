@@ -96,7 +96,7 @@ class App extends Component {
                 <List.Item.Meta
                   avatar={
                     <Switch
-                      defaultChecked={!item.done}
+                      checked={!item.done}
                       onChange={this.onChangeItemState(item.title)}
                     />
                   }

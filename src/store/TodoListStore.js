@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import { toJS } from 'mobx';
 
 const TodoItem = types
   .model('TodoItem', {
@@ -30,8 +31,10 @@ const TodoListStore = types
     }
   }))
   .views(self => ({
-    getSearchResults: searchTerm =>
-      self.items.filter(item => item.title.includes(searchTerm))
+    getSearchResults: searchTerm => {
+      const items = toJS(self.items);
+      return items.filter(item => item.title.includes(searchTerm));
+    }
   }));
 
 export default TodoListStore;
