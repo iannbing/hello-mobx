@@ -7,7 +7,7 @@ const todoList = TodoListStore.create({
 });
 
 reaction(
-  () => todoList.items.map(item => ({ ...item })),
+  () => todoList.items.map(item => item.toJSON()),
   items => {
     const data = JSON.stringify(items);
     localStorage.setItem('todoList', data);
