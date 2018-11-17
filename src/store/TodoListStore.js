@@ -34,6 +34,10 @@ const TodoListStore = types
     getSearchResults: searchTerm => {
       const items = toJS(self.items);
       return items.filter(item => item.title.includes(searchTerm));
+    },
+    getItem: title => {
+      const items = toJS(self.items);
+      return items.find(item => item.title === title);
     }
   }));
 

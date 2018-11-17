@@ -40,7 +40,7 @@ class App extends Component {
     const { todoList } = this.props;
 
     const title = e.nativeEvent.target.value.trim();
-    if (title) {
+    if (title && !todoList.getItem(title)) {
       await todoList.add(title);
       this.setState({ inputValue: '' });
     }
