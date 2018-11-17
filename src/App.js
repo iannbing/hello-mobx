@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { List, Switch } from 'antd';
+import { List } from 'antd';
 import { observer, inject } from 'mobx-react';
 import { get } from 'lodash';
 
 import Page from './components/Page';
 import Card from './components/Card';
 import Input from './components/Input';
+import Checkbox from './components/Checkbox';
 import { fetch } from './Fetcher';
 
 const TODO_LIST = 'todoList';
@@ -92,14 +93,11 @@ class App extends Component {
                 actions={[
                   <span onClick={this.removeItem(item.title)}>delete</span>
                 ]}
+                style={{ cursor: 'pointer' }}
+                onClick={this.onChangeItemState(item.title)}
               >
                 <List.Item.Meta
-                  avatar={
-                    <Switch
-                      checked={!item.done}
-                      onChange={this.onChangeItemState(item.title)}
-                    />
-                  }
+                  avatar={<Checkbox checked={item.done} />}
                   title={item.title}
                 />
               </List.Item>
