@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "https://iannbing.github.io/hello-mobx/static/js/runtime~main.698df9ef.js"
   },
   {
-    "revision": "bd577f23320cb66f9931",
-    "url": "https://iannbing.github.io/hello-mobx/static/js/main.bd577f23.chunk.js"
+    "revision": "bbf5743ecc05e690df46",
+    "url": "https://iannbing.github.io/hello-mobx/static/js/main.bbf5743e.chunk.js"
   },
   {
-    "revision": "406d341829c364fbdb5d",
-    "url": "https://iannbing.github.io/hello-mobx/static/js/1.406d3418.chunk.js"
+    "revision": "f7d2b73a967498d8efe5",
+    "url": "https://iannbing.github.io/hello-mobx/static/js/1.f7d2b73a.chunk.js"
   },
   {
-    "revision": "406d341829c364fbdb5d",
+    "revision": "f7d2b73a967498d8efe5",
     "url": "https://iannbing.github.io/hello-mobx/static/css/1.1bd6aa49.chunk.css"
   },
   {
-    "revision": "6dc2cc29542e7b4a7cfcd167c80d9534",
+    "revision": "a039efb2e396c2a4f74c068e040f9e62",
     "url": "https://iannbing.github.io/hello-mobx/index.html"
   }
 ];
