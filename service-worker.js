@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://iannbing.github.io/hello-mobx/precache-manifest.688e704185c1ff7853c30218124f24f1.js"
+  "https://iannbing.github.io/hello-mobx/precache-manifest.5539702461ce8bcd02fee25d33ddf5d9.js"
 );
 
 workbox.clientsClaim();
