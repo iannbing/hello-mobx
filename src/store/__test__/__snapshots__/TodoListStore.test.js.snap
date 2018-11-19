@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoListStore should load items 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "done": true,
+      "title": "foo",
+    },
+    Object {
+      "done": false,
+      "title": "bar",
+    },
+  ],
+}
+`;

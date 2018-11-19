@@ -2,9 +2,12 @@ import { getSnapshot, applyAction, clone, testActions } from 'mobx-state-tree';
 
 import TodoListStore from '../TodoListStore';
 
-const todoListStore = TodoListStore.create({ items: [] });
+let todoListStore;
 
 describe('TodoListStore', () => {
+  beforeEach(() => {
+    todoListStore = TodoListStore.create({ items: [] });
+  });
   it('should load items', () => {
     todoListStore.load([
       { title: 'foo', done: true },
