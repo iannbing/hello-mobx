@@ -1,23 +1,19 @@
+// eslint-disable-next-line
 const {
   override,
-  addDecoratorsLegacy,
-  disableEsLint,
-  fixBabelImports,
+  useBabelRc,
+  useEslintRc,
+  // addBabelPlugin,
+  // addDecoratorsLegacy,
+  // disableEsLint,
+  // fixBabelImports,
   addBundleVisualizer,
   addWebpackAlias
-} = require('customize-cra');
+} = require('customize-cra'); // eslint-disable-line
 
 module.exports = override(
-  addDecoratorsLegacy(),
-  disableEsLint(),
+  useBabelRc(),
+  useEslintRc(),
   process.env.REACT_APP_BUNDLE_VISUALIZE === 'true' && addBundleVisualizer(),
-  addWebpackAlias({ '@ant-design/icons': 'purched-antd-icons' }), // only include used Icons
-  fixBabelImports('antd', {
-    libraryDirectory: 'lib',
-    style: 'css'
-  }),
-  fixBabelImports('lodash', {
-    libraryDirectory: '',
-    camel2DashComponentName: false
-  })
+  addWebpackAlias({ '@ant-design/icons': 'purched-antd-icons' }) // only include used Icons
 );

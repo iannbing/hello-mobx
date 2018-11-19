@@ -10,18 +10,24 @@ class Search extends Component {
   state = {
     inputValue: ''
   };
+
   setInputValue = inputValue => {
-    if (this.props.setValue) {
-      this.props.setValue(inputValue);
+    const { setValue } = this.props;
+
+    if (setValue) {
+      setValue(inputValue);
     }
 
     this.setState({ inputValue });
   };
+
   getValue = e => get(e, 'nativeEvent.target.value') || '';
+
   onType = e => {
     const inputValue = this.getValue(e);
     this.setInputValue(inputValue);
   };
+
   addItem = async e => {
     const { todoList } = this.props;
     const title = this.getValue(e).trim();
@@ -30,8 +36,9 @@ class Search extends Component {
       this.setInputValue('');
     }
   };
+
   render() {
-    const inputValue = this.state.inputValue;
+    const { inputValue } = this.state;
     return (
       <Input
         placeholder="What's next?"

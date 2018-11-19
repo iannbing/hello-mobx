@@ -7,21 +7,32 @@ import Checkbox from '../components/Checkbox';
 @inject('todoList')
 @observer
 class TodoListItem extends React.Component {
-  getDeleteFn = title => async e => {
+  getDeleteFn = title => async () => {
     const { todoList } = this.props;
 
     await todoList.remove(title);
   };
-  onChangeItemState = title => e => {
+
+  onChangeItemState = title => () => {
     const { todoList } = this.props;
 
     todoList.toggle(title);
   };
+
   render() {
     const { item } = this.props;
     return (
       <List.Item
-        actions={[<span onClick={this.getDeleteFn(item.title)}>delete</span>]}
+        actions={[
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={this.getDeleteFn(item.title)}
+            onKeyDown={() => {}}
+          >
+            delete
+          </div>
+        ]}
         style={{ cursor: 'pointer' }}
       >
         <List.Item.Meta
