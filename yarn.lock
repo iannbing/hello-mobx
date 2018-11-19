@@ -1595,10 +1595,22 @@ babel-core@^6.0.0, babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.7"
 
-babel-eslint@9.0.0, babel-eslint@^9.0.0:
+babel-eslint@9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-9.0.0.tgz#7d9445f81ed9f60aff38115f838970df9f2b6220"
   integrity sha512-itv1MwE3TMbY0QtNfeL7wzak1mV47Uy+n6HtSOO4Xd7rvmO+tsGQSgyOEEgo6Y2vHZKZphaoelNeSVj4vkLA1g==
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
+    eslint-scope "3.7.1"
+    eslint-visitor-keys "^1.0.0"
+
+babel-eslint@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
+  integrity sha512-z7OT1iNV+TjOwHNLLyJk+HN+YVWX+CLE6fPD2SymJZOZQBs+QIexFjhm4keGTm8MW9xr4EC9Q0PbaLB24V5GoQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/parser" "^7.0.0"
@@ -3566,25 +3578,25 @@ eslint-config-prettier@^3.1.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-react-airbnb-prettier@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/eslint-config-react-airbnb-prettier/-/eslint-config-react-airbnb-prettier-0.0.8.tgz#92abb1459fda84ae97212956c43bc0de0a721423"
-  integrity sha512-BlipzKVStDi9pxGyZ2C5wUazGsXOH5Mx9Y6FZlqndL3Tx+Slv2lIcJ6Hf9DO36/GPf+Vl9iKSZXhanAuWn59Lg==
+eslint-config-react-airbnb-prettier@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/eslint-config-react-airbnb-prettier/-/eslint-config-react-airbnb-prettier-0.0.9.tgz#9939cb45997f3105b4d06d0f0e88c9ea58c2822f"
+  integrity sha512-2rMYntwFJ6fFmNiMbPQ9OCQBd7RSEUpAHLKwxyxursZ/Ck73B2AEc1I4FEpFjuPfqyqloyGaEiXKIlKELLciFw==
   dependencies:
-    babel-eslint "^9.0.0"
+    babel-eslint "^10.0.1"
     eslint "^5.8.0"
     eslint-config-airbnb "^17.1.0"
     eslint-config-prettier "^3.1.0"
-    eslint-config-react-app "^3.0.3"
-    eslint-plugin-cypress "^2.0.1"
-    eslint-plugin-flowtype "^2.50.3"
+    eslint-config-react-app "^3.0.5"
+    eslint-plugin-cypress "^2.1.2"
+    eslint-plugin-flowtype "^3.2.0"
     eslint-plugin-import "^2.14.0"
     eslint-plugin-jsx-a11y "^6.1.2"
     eslint-plugin-prettier "^3.0.0"
     eslint-plugin-react "^7.11.1"
     prettier "^1.15.1"
 
-eslint-config-react-app@^3.0.3, eslint-config-react-app@^3.0.5:
+eslint-config-react-app@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-3.0.5.tgz#d199088ab486d7ccc56d40dedcb1482b01934fb2"
   integrity sha512-GjPuy0pbaCkl4+9wm8p0xpl/x/AGFy3wKuju3WNVefDNDDu8T6Ap1OFMDDJbYnOAI+4jfyAE3VT06lAYcJVpdw==
@@ -3618,7 +3630,7 @@ eslint-module-utils@^2.2.0:
     debug "^2.6.8"
     pkg-dir "^1.0.0"
 
-eslint-plugin-cypress@^2.0.1, eslint-plugin-cypress@^2.1.2:
+eslint-plugin-cypress@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-2.1.2.tgz#e4638f54235250ce264202001526537bac9d029e"
   integrity sha512-53kluZnH8N1SKg0fLh1csQy87NOVnmsHE2iH17uq3z4PgKAacca0fVsn/qhjTB018t0/wIb9WlY9u78iIHzorQ==
@@ -3632,10 +3644,10 @@ eslint-plugin-flowtype@2.50.1:
   dependencies:
     lodash "^4.17.10"
 
-eslint-plugin-flowtype@^2.50.3:
-  version "2.50.3"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.50.3.tgz#61379d6dce1d010370acd6681740fd913d68175f"
-  integrity sha512-X+AoKVOr7Re0ko/yEXyM5SSZ0tazc6ffdIOocp2fFUlWoDt7DV0Bz99mngOkAFLOAWjqRA5jPwqUCbrx13XoxQ==
+eslint-plugin-flowtype@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-3.2.0.tgz#824364ed5940a404b91326fdb5a313a2a74760df"
+  integrity sha512-baJmzngM6UKbEkJ5OY3aGw2zjXBt5L2QKZvTsOlXX7yHKIjNRrlJx2ods8Rng6EdqPR9rVNIQNYHpTs0qfn2qA==
   dependencies:
     lodash "^4.17.10"
 

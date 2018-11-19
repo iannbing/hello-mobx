@@ -3,10 +3,6 @@ const {
   override,
   useBabelRc,
   useEslintRc,
-  // addBabelPlugin,
-  // addDecoratorsLegacy,
-  // disableEsLint,
-  // fixBabelImports,
   addBundleVisualizer,
   addWebpackAlias
 } = require('customize-cra'); // eslint-disable-line
