@@ -24,7 +24,7 @@ const TodoListStore = types
       self.items = self.items.filter(item => item.title !== title);
     },
     load: items => {
-      self.items = items;
+      self.items = items || [];
     },
     toggle: title => {
       self.items.find(item => item.title === title).toggle();

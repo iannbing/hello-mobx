@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
-export const defaultFetch = async key => {
+const defaultFetch = async key => {
   const retrievedObject = localStorage.getItem(key);
-  return retrievedObject ? JSON.parse(retrievedObject) : {};
+  return retrievedObject ? JSON.parse(retrievedObject) : [];
 };
 
 class Fetcher extends Component {

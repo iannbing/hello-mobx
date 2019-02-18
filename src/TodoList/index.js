@@ -5,7 +5,7 @@ import { observer, inject } from 'mobx-react';
 import TodoListItem from './TodoListItem';
 import Card from '../components/Card';
 import Search from './Search';
-import { defaultFetch } from '../Fetcher';
+import Fetcher from '../Fetcher';
 import getEmptyText from './getEmptyText';
 
 export const TODO_LIST = 'todoList';
@@ -15,17 +15,6 @@ export const TODO_LIST = 'todoList';
 class TodoList extends React.Component {
   state = {
     inputValue: ''
-  };
-
-  componentDidMount() {
-    this.loadTodoList();
-  }
-
-  loadTodoList = async () => {
-    const { todoList } = this.props;
-    const data = await defaultFetch(TODO_LIST);
-    todoList.load(data);
-    return data;
   };
 
   getVisibleTodoItems = () => {
@@ -41,17 +30,27 @@ class TodoList extends React.Component {
 
   render() {
     const { inputValue } = this.state;
+    const { todoList } = this.props;
     const emptyText = getEmptyText(inputValue);
     const todoItems = this.getVisibleTodoItems();
 
     return (
       <Card title={<Search setValue={this.setValue} />}>
-        <List
-          itemLayout="horizontal"
-          dataSource={todoItems}
-          locale={{ emptyText }}
-          renderItem={item => <TodoListItem item={item} />}
-        />
+        <Fetcher id={TODO_LIST}>
+          {({ data, loading }) => {
+            todoList.load(data);
+            return loading ? (
+              'loading'
+            ) : (
+              <List
+                itemLayout="horizontal"
+                dataSource={todoItems}
+                locale={{ emptyText }}
+                renderItem={item => <TodoListItem item={item} />}
+              />
+            );
+          }}
+        </Fetcher>
       </Card>
     );
   }
