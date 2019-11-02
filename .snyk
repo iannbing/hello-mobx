@@ -650,3 +650,15 @@ patch:
         patched: '2019-07-04T01:44:42.710Z'
     - react-scripts > jest > jest-cli > jest-runner > jest-runtime > jest-config > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
         patched: '2019-07-04T01:44:42.710Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-11-02T18:37:13.740Z'
