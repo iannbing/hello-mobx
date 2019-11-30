@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 export const defaultFetch = async key => {
   const retrievedObject = localStorage.getItem(key);
-  return retrievedObject ? JSON.parse(retrievedObject) : {};
+  return retrievedObject ? JSON.parse(retrievedObject) : null;
 };
 
 class Fetcher extends Component {
@@ -21,7 +21,7 @@ class Fetcher extends Component {
     const { id, fetch } = this.props;
     this.setState({ loading: true });
     const fetchFn = fetch || defaultFetch;
-    const data = await fetchFn(id);
+    const data = (await fetchFn(id)) || [];
     this.setState({ data, loading: false });
   };
 

@@ -23,7 +23,7 @@ class TodoList extends React.Component {
 
   loadTodoList = async () => {
     const { todoList } = this.props;
-    const data = await defaultFetch(TODO_LIST);
+    const data = (await defaultFetch(TODO_LIST)) || [];
     todoList.load(data);
     return data;
   };

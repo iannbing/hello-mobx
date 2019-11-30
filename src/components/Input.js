@@ -1,4 +1,4 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import { Input } from 'antd';
 
 const MyInput = styled(Input)({
